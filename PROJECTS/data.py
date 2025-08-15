@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt 
 
 # Data structure: [restaurant_id, 2021, 2022, 2023, 2024]
+years = np.array([2021, 2022, 2023, 2024])
 sales_data = np.array([
     [1, 150000, 180000, 220000, 100000],  # Paradise Biryani
     [2, 120000, 140000, 110000, 190000],  # Beijing Bites
@@ -31,3 +32,15 @@ print("MINIMUM SALES PER RESTAURENT FROM 2021 TO 2024 ", min_sales)
 #MAXIMUM SALES PER YEAR
 max_sales = np.max(sales_data[:, 1:], axis=0)  
 print("MAXIMUM SALES PER YEAR FROM 2021 TO 2024 ", max_sales)
+
+plt.figure(figsize=(10, 6))
+plt.plot(years,max_sales , linestyle='-', marker='o', markersize=10,
+         markerfacecolor='red', markeredgecolor='black', linewidth=2)
+plt.title('Average Maximum Sales per Year')
+plt.xlabel('Year')
+plt.ylabel('Sales')
+plt.grid(True)
+# Annotate values
+for x, y in zip(years, max_sales):
+    plt.annotate(f"{y}", (x, y), textcoords="offset points", xytext=(0, 10), ha='center')
+plt.show()
